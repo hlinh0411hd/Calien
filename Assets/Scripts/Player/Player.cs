@@ -12,7 +12,7 @@ public class Player : APlayer
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("direct " + direct);
     }
 
     protected override void OnFire()
@@ -26,10 +26,35 @@ public class Player : APlayer
         position.x += hor * speed;
         position.y += vert * speed;
         transform.position = position;
+
+        float angle = Mathf.Atan(vert / hor) / Mathf.PI * 180;
+        if (-22.5 < angle && angle <= 22.5) {
+            direct = DIRECT.EAST;
+        }
+        if (22.5 < angle && angle <= 67.5) {
+            direct = DIRECT.NORTH_EAST;
+        }
+        if (67.5 < angle && angle <= 112.5) {
+            direct = DIRECT.NORTH;
+        }
+        if(112.5 < angle && angle <= 157.5) {
+            direct = DIRECT.NORTH_WEST;
+        }
+        if(157.5 < angle || angle <= -157.5) {
+            direct = DIRECT.WEST;
+        }
+        if(-157.5 < angle && angle <= -112.5) {
+            direct = DIRECT.SOUTH_WEST;
+        }
+        if(-112.5 < angle && angle <= -67.5) {
+            direct = DIRECT.SOUTH;
+        }
+        if(-67.5 < angle && angle <= -22.5) {
+            direct = DIRECT.SOUTH_EAST;
+        }
     }
 
     protected override void DoAction()
     {
-        Debug.Log("HIHI");
     }
 }

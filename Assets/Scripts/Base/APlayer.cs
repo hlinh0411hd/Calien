@@ -10,6 +10,8 @@ public abstract class APlayer : MonoBehaviour
     protected float hor;
     protected float vert;
 
+    protected DIRECT direct;
+
 
     public float timeDelayFire;
     protected float currentTimeDelayFire;
