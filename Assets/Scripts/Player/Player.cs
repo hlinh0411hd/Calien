@@ -27,7 +27,26 @@ public class Player : APlayer
         position.y += vert * speed;
         transform.position = position;
 
-        float angle = Mathf.Atan(vert / hor) / Mathf.PI * 180;
+        float angle = (vert >= 0 ? 90 : -90);
+        if (hor != 0)
+        {
+            if (vert != 0)
+            {
+                angle = Mathf.Atan(vert / hor) / Mathf.PI * 180;
+                if (hor < 0 && vert < 0)
+                {
+                    angle -= 180;
+                }
+
+                if (hor < 0 && vert > 0)
+                {
+                    angle += 180;
+                }
+            } else
+            {
+                angle = hor > 0 ? 0 : 180;
+            }
+        }
         if (-22.5 < angle && angle <= 22.5) {
             direct = DIRECT.EAST;
         }
